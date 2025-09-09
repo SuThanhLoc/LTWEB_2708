@@ -12,6 +12,6 @@ public interface IUserDAO {
 	UserModel findById(int id); // lấy một user
 	
 	void insert(UserModel user); // thêm user
-	
+	UserModel finByUserName(String username); // dùng để login 
 	
 }
