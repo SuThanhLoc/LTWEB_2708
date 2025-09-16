@@ -1,7 +1,6 @@
 package vn.iotstart.dao; // định nghĩa các phương thức đã khai báo ở IUserDAO 
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -21,22 +20,15 @@ public class UserDAOImpl extends DBConnection implements IUserDAO {
 		String sql = "SELECT * FROM users";
 		List<UserModel> list = new ArrayList<UserModel>();
 		try {
-			conn = new DBConnection().getDatabaseConnection(); // kết nối
+			new DBConnection();
+			conn = DBConnection.getConnection(); // kết nối
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery(); // thực thi sql
 			// đọc từng dòng ra
 			while (rs.next()) {
-				list.add(new UserModel(
-						rs.getInt("id"),
-						rs.getString("username"),
-						rs.getString("email"),
-						rs.getString("fullname"),
-						rs.getString("password"),
-						rs.getString("images"),
-						rs.getString("phone"),
-						rs.getInt("roleid"),
-						rs.getDate("createDate")
-						));
+				list.add(new UserModel(rs.getInt("id"), rs.getString("username"), rs.getString("email"),
+						rs.getString("fullname"), rs.getString("password"), rs.getString("images"),
+						rs.getString("phone"), rs.getInt("roleid"), rs.getDate("createDate")));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,7 +40,8 @@ public class UserDAOImpl extends DBConnection implements IUserDAO {
 	public UserModel findById(int id) {
 		String sql = "SELECT * FROM users WHERE id = ? ";
 		try {
-			conn = new DBConnection().getDatabaseConnection(); // kết nối
+			new DBConnection();
+			conn = DBConnection.getConnection(); // kết nối
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			rs = ps.executeQuery(); // thực thi sql
@@ -74,14 +67,15 @@ public class UserDAOImpl extends DBConnection implements IUserDAO {
 
 	@Override
 	public void insert(UserModel user) {
-		
+
 	}
 
 	@Override
 	public UserModel finByUserName(String username) {
 		String sql = "SELECT * FROM users WHERE username = ? ";
 		try {
-			conn = new DBConnection().getDatabaseConnection(); // kết nối
+			new DBConnection();
+			conn = DBConnection.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			rs = ps.executeQuery(); // thực thi sql
@@ -103,6 +97,15 @@ public class UserDAOImpl extends DBConnection implements IUserDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static void main(String args) {
+		try {
+			IUserDAO userDao = new UserDAOImpl();
+			System.out.println(userDao.findById(1));
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
 	}
 
 }

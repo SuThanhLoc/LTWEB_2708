@@ -10,7 +10,7 @@ public class DBConnection {
 	private static String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static String URL = "jdbc:mysql://localhost:3306/ltweb_test";
 
-	public static Connection getDatabaseConnection() throws ClassNotFoundException {
+	public static Connection getConnection() throws ClassNotFoundException {
 		Class.forName(DRIVER);
 		try {
 			return DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -25,7 +25,7 @@ public class DBConnection {
 	{
 		try {
 			new DBConnection();
-			System.out.print(DBConnection.getDatabaseConnection());
+			System.out.print(DBConnection.getConnection());
 		}
 		catch (Exception e)
 		{
