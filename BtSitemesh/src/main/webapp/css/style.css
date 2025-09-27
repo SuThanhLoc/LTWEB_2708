@@ -1,0 +1,7 @@
+@charset "UTF-8";
+.box {
+    background-color: aqua;
+    min-height: 50px;
+    margin-top: 30px;
+    border-radius: 8px;
+}

@@ -1,0 +1,1 @@
+<p class="mb-0">&copy; 2025 - Admin System</p>
