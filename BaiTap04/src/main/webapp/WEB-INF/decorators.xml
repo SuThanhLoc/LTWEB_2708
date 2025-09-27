@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/decorators">
+    
+    <!-- Admin Decorator - Apply to admin pages -->
+    <decorator name="admin" page="admin.jsp">
+        <pattern>/admin/*</pattern>
+        <pattern>/category-management</pattern>
+        <pattern>/profile</pattern>
+        <pattern>/home</pattern>
+    </decorator>
+    
+    <!-- Login Decorator - Apply to login and register pages -->
+    <decorator name="login" page="login.jsp">
+        <pattern>/login</pattern>
+        <pattern>/register</pattern>
+        <pattern>/reset-password-simple</pattern>
+    </decorator>
+    
+    <!-- Default Decorator - Apply to all other pages (excluding admin and login patterns) -->
+    <decorator name="main" page="main.jsp">
+        <pattern>/</pattern>
+        <pattern>/index</pattern>
+    </decorator>
+    
+    <!-- Exclude patterns that should not be decorated -->
+    <excludes>
+        <pattern>/assets/*</pattern>
+        <pattern>/uploads/*</pattern>
+        <pattern>/download-image</pattern>
+        <pattern>*.css</pattern>
+        <pattern>*.js</pattern>
+        <pattern>*.png</pattern>
+        <pattern>*.jpg</pattern>
+        <pattern>*.gif</pattern>
+    </excludes>
+    
+</decorators>
